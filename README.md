@@ -1,4 +1,4 @@
-# vault-token-helper-secret-tool [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/scop/vault-token-helper-secret-tool/main.svg)](https://results.pre-commit.ci/latest/github/scop/vault-token-helper-secret-tool/main)
+# vault-token-helper-secret-tool [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/smrqdt/vault-token-helper-secret-tool/main.svg)](https://results.pre-commit.ci/latest/github/smrqdt/vault-token-helper-secret-tool/main)
 
 A [HashiCorp Vault](https://www.vaultproject.io/) [token
 helper](https://www.vaultproject.io/docs/commands/token-helper) in a
@@ -15,19 +15,9 @@ with the `enable` argument:
 ./vault-token-helper-secret-tool enable
 ```
 
-### Advanced
+### Multiple Vault clusters
 
-Multiple different tokens can be used with this helper by installing
-(e.g. by symlinking) it to another name; the part after
-`vault-token-helper-secret-tool` in its basename will be used to
-identify tokens managed by that helper in the secret store. The
-default identifier for a suffixless script is `default`.
-
-When changing between tokens, the helper name needs to be swapped in
-Vault config accordingly though. Or alternatively, multiple config
-files (with uniquely named helper in each of them) can be used too,
-and the `VAULT_CONFIG_PATH` environment variable changed as needed to
-choose between them.
+Operates on the entry associated with the current `VAULT_ADDR` environment variable. If unset, a default token slot will be used.
 
 ## Alternatives, credits
 
@@ -36,6 +26,8 @@ Inspired by
 but much smaller and simpler. For something more elaborate than this
 one, as well as for support for other store backends besides what
 libsecret works with, that'd be one alternative to look into.
+
+Adapted from [scop/vault-token-helper-secret-tool](https://github.com/scop/vault-token-helper-secret-tool] to use `$VAULT_ADDR`.
 
 ## License
 
